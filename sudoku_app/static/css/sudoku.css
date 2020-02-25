@@ -1,0 +1,29 @@
+input { 
+    border: solid thin #bababa; 
+    text-align: center; 
+    font-size: 25px;
+}
+input {
+    height: 55px;
+    width: 55px; 
+}
+input:focus {
+    background-color: #d5d5d5;
+    color: transparent;
+    outline: none;
+}
+input:disabled:hover {
+    background-color: #dde5ff;
+}
+#board {
+    width: 501px;
+    margin-bottom: 20px;
+    border: solid medium #343a40; 
+}
+button {
+    height: 60px;
+}
+#input-box {
+    width: 300px;
+    margin-bottom: 20px;            
+}
