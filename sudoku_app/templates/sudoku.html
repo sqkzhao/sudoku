@@ -72,7 +72,6 @@
                         <button id="hint" type="submit" class="btn btn-outline-secondary col rounded-0">HINTS</button>
                     </div> -->
                     <div class="row">
-                        
                         <button id="new-game" type="submit" class="btn btn-outline-secondary col rounded-0"><a href="/new_game">NEW GAME</a></button>
                     </div>
                 </div>
@@ -92,6 +91,8 @@
         //     [1,0,3,7,6,0,4,0,5],
         //     [9,4,6,0,0,1,7,8,2],
         // ]
+        var cell_id = null;
+        var set_value = null;   //button value
 
         function displayBoard(){
             var output = '';
@@ -101,7 +102,7 @@
                 output += "<tr>";
                 for( var col = 0; col < board[row].length; col++){
                     if(board[row][col] == 0){
-                        output += `<td><input type='text' maxlength='1' row=${row} col=${col}></td>`;
+                        output += `<td><input type='text' maxlength='1' id=${row}${col}></td>`;
                     }
                     else{
                         output += `<td><input type='text' maxlength='1' value=${board[row][col]} disabled></td>`;
@@ -110,7 +111,7 @@
                 output += "</tr>";
             }
             document.getElementById('board').innerHTML = output;
-                console.log(board);
+                console.log("generated board:", board);
             });
 
         }
@@ -120,13 +121,18 @@
 
         $(document).ready(function(){
             
+            $("input").focus(function(e){
+                
+                cell_id = $(this).attr("id");
+                console.log("cell_id:", cell_id);
+            });
+
+            $("button").click(function(e){
+                set_value = $(this).val();
+                console.log("button value:", set_value);
+            });
 
 
-
-            // $("input").focus(function(e){
-            //     console.log(e);
-            //     console.log($(e.target).attr("row"));
-            // });
         });
     </script>
 </body>
