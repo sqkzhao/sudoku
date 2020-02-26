@@ -49,23 +49,23 @@
             <div class="col px-3">
                 <div id="input-box mx-auto">
                     <div class="row">
-                        <button id="one" type="submit" class="btn btn-outline-secondary col rounded-0">1</button>
-                        <button id="two" type="submit" class="btn btn-outline-secondary col rounded-0">2</button>
-                        <button id="three" type="submit" class="btn btn-outline-secondary col rounded-0">3</button>
+                        <button id="one" type="submit" value=1 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">1</button>
+                        <button id="two" type="submit" value=2 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">2</button>
+                        <button id="three" type="submit" value=3 class="btn btn-outline-secondary col rounded-0 border-bottom-0">3</button>
                     </div>
                     <div class="row">
-                        <button id="four" type="submit" class="btn btn-outline-secondary col rounded-0">4</button>
-                        <button id="five" type="submit" class="btn btn-outline-secondary col rounded-0">5</button>
-                        <button id="six" type="submit" class="btn btn-outline-secondary col rounded-0">6</button>
+                        <button id="four" type="submit" value=4 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">4</button>
+                        <button id="five" type="submit" value=5 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">5</button>
+                        <button id="six" type="submit" value=6 class="btn btn-outline-secondary col rounded-0 border-bottom-0">6</button>
                     </div>
                     <div class="row">
-                        <button id="seven" type="submit" class="btn btn-outline-secondary col rounded-0">7</button>
-                        <button id="eight" type="submit" class="btn btn-outline-secondary col rounded-0">8</button>
-                        <button id="nine" type="submit" class="btn btn-outline-secondary col rounded-0">9</button>
+                        <button id="seven" type="submit" value=7 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">7</button>
+                        <button id="eight" type="submit" value=8 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">8</button>
+                        <button id="nine" type="submit" value=9 class="btn btn-outline-secondary col rounded-0 border-bottom-0">9</button>
                     </div>
                     <div class="row">
-                        <button id="clear" type="submit" class="btn btn-outline-secondary col rounded-0">CLEAR</button>
-                        <button id="erase" type="submit" class="btn btn-outline-secondary col rounded-0">ERASE</button>
+                        <button id="clear" type="submit" class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">CLEAR</button>
+                        <button id="erase" type="submit" class="btn btn-outline-secondary col rounded-0 border-bottom-0">ERASE</button>
                     </div>
                     <!-- <div class="row">
                         <button id="notes" type="submit" class="btn btn-outline-secondary col rounded-0">NOTES</button>
@@ -91,8 +91,7 @@
         //     [1,0,3,7,6,0,4,0,5],
         //     [9,4,6,0,0,1,7,8,2],
         // ]
-        var cell_id = null;
-        var set_value = null;   //button value
+        
 
         function displayBoard(){
             var output = '';
@@ -102,7 +101,7 @@
                 output += "<tr>";
                 for( var col = 0; col < board[row].length; col++){
                     if(board[row][col] == 0){
-                        output += `<td><input type='text' maxlength='1' id=${row}${col}></td>`;
+                        output += `<td><input type='text' maxlength='0' id=${row}${col}></td>`;
                     }
                     else{
                         output += `<td><input type='text' maxlength='1' value=${board[row][col]} disabled></td>`;
@@ -119,21 +118,21 @@
 
         displayBoard();
 
-        $(document).ready(function(){
-            
-            $("input").focus(function(e){
-                
-                cell_id = $(this).attr("id");
-                console.log("cell_id:", cell_id);
-            });
-
-            $("button").click(function(e){
-                set_value = $(this).val();
-                console.log("button value:", set_value);
-            });
-
-
+        var cell_id, set_value;
+        // get the selected input id
+        $(document).on('focus', 'input', function(){
+            cell_id = this.id;
+            // console.log("cell_id:", cell_id);
         });
+
+        // get the clicked button value, and set it as the input value
+        $(document).on('click', 'button', function(){
+            set_value = $(this).val();
+            var cell = document.getElementById(cell_id)
+            $(cell).val(set_value);
+            // console.log("button value:", set_value);
+        })
+
     </script>
 </body>
 </html>
