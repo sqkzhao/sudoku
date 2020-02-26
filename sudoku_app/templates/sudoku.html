@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/sudoku.css' %}">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Sudoku of the Day</title>
@@ -31,7 +32,7 @@
                     <a class="nav-link" href="#">Leaderboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-secondary" href="#">Login/Register</a>
+                    <a class="nav-link btn btn-secondary" href="/sign_in">Login/Register</a>
                 </li>
             </ul>
         </div>  
@@ -71,28 +72,32 @@
                         <button id="hint" type="submit" class="btn btn-outline-secondary col rounded-0">HINTS</button>
                     </div> -->
                     <div class="row">
-                        <button id="new-game" type="submit" class="btn btn-outline-secondary col rounded-0">NEW GAME</button>
+                        
+                        <button id="new-game" type="submit" class="btn btn-outline-secondary col rounded-0"><a href="/new_game">NEW GAME</a></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        var board = [
-            [4,0,8,0,7,0,5,0,0],
-            [0,6,0,8,2,5,0,4,0],
-            [5,9,0,6,0,4,8,3,7],
-            [6,7,1,3,9,0,2,5,4],
-            [0,5,9,2,4,6,3,0,1],
-            [2,3,4,0,0,7,9,6,0],
-            [7,0,5,4,8,9,0,1,3],
-            [1,0,3,7,6,0,4,0,5],
-            [9,4,6,0,0,1,7,8,2],
-        ]
+        var board = [];
+        // [
+        //     [4,0,8,0,7,0,5,0,0],
+        //     [0,6,0,8,2,5,0,4,0],
+        //     [5,9,0,6,0,4,8,3,7],
+        //     [6,7,1,3,9,0,2,5,4],
+        //     [0,5,9,2,4,6,3,0,1],
+        //     [2,3,4,0,0,7,9,6,0],
+        //     [7,0,5,4,8,9,0,1,3],
+        //     [1,0,3,7,6,0,4,0,5],
+        //     [9,4,6,0,0,1,7,8,2],
+        // ]
 
         function displayBoard(){
             var output = '';
-            for(var row = 0; row < board.length; row++){
+            $.get("https://sugoku.herokuapp.com/board?difficulty=easy", function(data){
+                board = data['board'];
+                for(var row = 0; row < board.length; row++){
                 output += "<tr>";
                 for( var col = 0; col < board[row].length; col++){
                     if(board[row][col] == 0){
@@ -105,6 +110,9 @@
                 output += "</tr>";
             }
             document.getElementById('board').innerHTML = output;
+                console.log(board);
+            });
+
         }
 
 
