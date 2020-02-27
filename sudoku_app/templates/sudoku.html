@@ -77,6 +77,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="csrf" value="{{csrf_token}}">
     </div>
     <script>
         var board = [];
@@ -94,10 +95,11 @@
         
 
         function displayBoard(){
+            var csrf = $("#csrf").val()
             var output = '';
             $.get("https://sugoku.herokuapp.com/board?difficulty=easy", function(data){
                 board = data['board'];
-                for(var row = 0; row < board.length; row++){
+            for(var row = 0; row < board.length; row++){
                 output += "<tr>";
                 for( var col = 0; col < board[row].length; col++){
                     if(board[row][col] == 0){
@@ -109,6 +111,25 @@
                 }
                 output += "</tr>";
             }
+            console.log("BOARD: ",board)
+            $.ajaxSetup({
+                beforeSend:(xhr, settings) =>{
+                    xhr.setRequestHeader("X-CSRFToken", csrf)
+                },
+                url:"http://localhost:8000/board",
+                type:"POST",
+                crossDomain:true,
+                data:{
+                    "board":board
+                },
+                success:()=>{
+                    console.log('success')
+                },
+                complete:()=>{
+                    console.log("complete")
+                }
+            })
+            $.ajax()
             document.getElementById('board').innerHTML = output;
                 console.log("generated board:", board);
             });

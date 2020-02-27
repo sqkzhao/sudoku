@@ -5,3 +5,7 @@ def index(request):
 
 def new_game(request):
     return redirect('/')
+def board(request):
+    print("-"*50)
+    print(request.POST)
+    return "hello"
