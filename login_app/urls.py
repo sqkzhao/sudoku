@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index),
     path('register', views.register),
     path('login', views.login),
+    path('play_as_guest', views.guest),
 ]
 
 
