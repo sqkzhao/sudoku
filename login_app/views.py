@@ -37,6 +37,10 @@ def login(request):
         else:
             user = User.objects.get(email=request.POST['email_input'])
             request.session["user_id"] = user.id
+            request.session["user_name"] = user.first_name
             return redirect('/')
-
     return redirect('/') 
+
+def guest(request):
+    request.session.clear()
+    return redirect('/')

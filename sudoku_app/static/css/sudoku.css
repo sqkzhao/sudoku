@@ -27,3 +27,16 @@ button {
     width: 300px;
     margin-bottom: 20px;            
 }
+
+.timer button {
+    height: auto;
+    text-align: center;
+    padding: 0 5px;
+    vertical-align: middle;
+    width: 60px;
+}
+
+.timer {
+    height: 20px;
+}
+
