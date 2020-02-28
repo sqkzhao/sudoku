@@ -76,11 +76,32 @@ function reset(){
     document.getElementById("startStop").innerHTML = "Start";
 }
 
+// function printSubGridBorder(){
+//     for(var row = 0; row < board.length; row++){
+//         for( var col = 0; col < board[row].length; col++){
+//             if((row == 2) || (row == 5)){
+//                 // var cell = document.getElementById(`${row}${col}`);
+//                 var cell_id = `${row}${col}`;
+//                 console.log("cell", cell_id);
+//                 $("#cell_id").css("border-right", "red");
+//             }
+//         }
+//     }
+// }
+
+var difficulty = "easy";
+// $(document).on('click', '.dropdown-item', function(){
+//     var difficulty = $(this).attr("value");
+//     console.log(difficulty);
+//     generateBoard();
+// });
+
 function generateBoard(){
     var csrf = $("#csrf").val()
     var output = '';
     // get board from api; generate board
-    $.get("https://sugoku.herokuapp.com/board?difficulty=easy", function(data){
+
+    $.get("https://sugoku.herokuapp.com/board?difficulty="+difficulty, function(data){
         board = data['board'];
         original_board = data['board'];
     for(var row = 0; row < board.length; row++){
@@ -115,7 +136,8 @@ function generateBoard(){
     })
     $.ajax()
     document.getElementById('board').innerHTML = output;
-        console.log("generated board:", board);
+    // printSubGridBorder();
+    // console.log("generated board:", board);
     });
 }
 
@@ -145,10 +167,8 @@ $(document).on('click', 'button:not(#validate, #clear)', function(){
     else{
         $(cell).val(set_value);
         allInputs.push(cell_id);    // keep track what has been entered
-
     }
     board[cell_id[0]][cell_id[1]] = parseInt(set_value);
-
 
     console.log(allInputs);
     console.log(board);
