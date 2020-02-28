@@ -169,7 +169,8 @@ $(document).on('click', 'button:not(#validate, #clear)', function(){
         allInputs.push(cell_id);    // keep track what has been entered
     }
     board[cell_id[0]][cell_id[1]] = parseInt(set_value);
-
+    
+    console.log("interval",interval);
     console.log(allInputs);
     console.log(board);
 });
@@ -273,3 +274,48 @@ $(document).on('click', '#clear', function(){
         }
     }
 });
+
+function isEmpty(position){
+    for(var row = 0; row < 9; row++){
+        for(var col = 0; col < 9; col++){
+            if(board[row][col] == 0){
+            position[0] = row;
+            position[1] = col;
+            return True;
+            }
+        }
+        return False;
+    }
+}
+
+function inputNumber(row, col, number){
+    board[row][col] = number;
+    if(checkEverything()){
+        return True;
+    }
+    board[row][col] = 0;
+    return False;
+}
+
+function solve(){
+    position = [0,0];
+    
+    var checkEmpty = isEmpty(position);
+    if(checkEmpty === false){
+        return true;
+    }
+    row = position[0];
+    col = position[1];
+    
+    for(var number=1; number < 10; number++){
+        var isValid = inputNumber(row, col, number);
+        if(isValid){
+            board[row][col] = number;
+            if(solver()){
+                return true;
+            }
+            board[row][col] = 0;
+        }
+    }
+    return false;
+}
