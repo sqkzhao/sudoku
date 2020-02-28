@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/sudoku.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/script_hard.js' %}"></script>
     <title>Sudoku of the Day</title>
 </head>
 <body>
@@ -27,9 +27,9 @@
                         Difficulty
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/" value="easy">Easy</a>
-                        <a class="dropdown-item" href="/medium" value="medium">Medium</a>
-                        <a class="dropdown-item" href="/hard" value="hard">Hard</a>
+                        <a class="dropdown-item" href='/' value="easy">Easy</a>
+                        <a class="dropdown-item" href='/medium' value="medium">Medium</a>
+                        <a class="dropdown-item" href='/hard' value="hard">Hard</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -73,7 +73,7 @@
                 <div id="input-box mx-auto">
                     <div class="row">
                         <!-- <button id="new_game" type="submit" class="btn btn-outline-secondary col rounded-0">NEW GAME</button> -->
-                        <a href="/new_game" id="new_game" class="btn btn-info col rounded-0">NEW GAME</a>
+                        <a href="/hard" id="new_game" class="btn btn-info col rounded-0">NEW GAME</a>
                     </div>
                     <div class="row">
                         <button id="one" type="submit" value=1 class="btn btn-outline-secondary col rounded-0 border-bottom-0 border-right-0">1</button>
