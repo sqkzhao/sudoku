@@ -18,3 +18,11 @@ def index(request):
 def new_game(request):
     return redirect('/')
 
+def how_to_play(request):
+    return render(request, 'how_to_play.html')
+
+def medium(request):
+    return render(request, 'sudoku_medium.html')
+
+def hard(request):
+    return render(request, 'sudoku_hard.html')

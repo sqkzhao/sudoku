@@ -52,9 +52,9 @@ def checkAllBoxes():
     return True
 
 def checkEverything():
-    checkRows()
-    checkCols()
-    checkAllBoxes()
+    # checkRows()
+    # checkCols()
+    # checkAllBoxes()
     if checkRows() == False:
         return False
     if checkCols() == False:

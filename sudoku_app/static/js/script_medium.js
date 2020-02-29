@@ -89,7 +89,7 @@ function reset(){
 //     }
 // }
 
-var difficulty = "easy";
+var difficulty = "medium";
 // $(document).on('click', '.dropdown-item', function(){
 //     var difficulty = $(this).attr("value");
 //     console.log(difficulty);
@@ -256,8 +256,6 @@ function checkAllBoxes(){
     return true;
 }
 
-
-
 $(document).on('click', '#validate', function(){
     console.log('clicked VALIDATE');
     validate_result = [];
@@ -267,9 +265,6 @@ $(document).on('click', '#validate', function(){
     console.log(checkAllBoxes());
     // return checkEverything();
 });
-
-
-
 
 $(document).on('click', '#clear', function(){
     if(this.id == 'clear'){
@@ -284,7 +279,6 @@ $(document).on('click', '#clear', function(){
     }
 });
 
-
 function checkEverything(){
     if(checkRows() === false){
         return false;
@@ -297,6 +291,7 @@ function checkEverything(){
     }
     return true;
 }
+
 
 function isEmpty(position){
     for(var row = 0; row < 9; row++){
