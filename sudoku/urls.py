@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', include('sudoku_app.urls')),
+    path('sign_in/', include('login_app.urls')),
 ]
